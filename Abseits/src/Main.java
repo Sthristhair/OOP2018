@@ -2,7 +2,8 @@
 public class Main {
 
 	public static void main(String[] args) {
-		System.out.println("WHOOP WHOOP");
+		Wuerfel wuerfel1 = new Wuerfel(5);
+		System.out.println(wuerfel1.wuerfeln());
 	}
 
 }

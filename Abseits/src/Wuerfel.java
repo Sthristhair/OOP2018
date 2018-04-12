@@ -1,4 +1,5 @@
 
 public class Wuerfel {
-//Würfel sind toll
+//WÃ¼rfel sind toll
+  //ne die sind voll kacke
 }

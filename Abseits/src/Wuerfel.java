@@ -1,5 +1,12 @@
 
-public class Wuerfel {
-//Würfel sind toll
-  //ne die sind voll kacke
+public class Wuerfel 
+{
+	//Attribute
+	private int augenzahl;
+	
+	//Konstruktor
+	public Wuerfel(int augenzahl)
+	{
+		this.augenzahl = augenzahl;
+	}
 }

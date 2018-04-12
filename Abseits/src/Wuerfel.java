@@ -15,7 +15,7 @@ public class Wuerfel
 	public int wuerfeln() {
 		Random rand = new Random();
 		
-		int x = rand.nextInt(5) + 1;
+		int x = rand.nextInt(this.augenzahl) + 1;
 		return x;
 	}
 }

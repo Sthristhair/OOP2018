@@ -12,4 +12,13 @@ public class Spieler {
 		this.augensumme = 0;
 		this.status = true;
 	}
+	
+	public String getName(){
+		return name;
+	}
+	
+	public int getAugensumme() {
+		return augensumme;
+	}
+	
 }

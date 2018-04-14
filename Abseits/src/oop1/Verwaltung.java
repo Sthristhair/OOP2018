@@ -38,7 +38,6 @@ public class Verwaltung {
         if (in.equals("y")){
             printRegeln();
         }
-        //hallo
         while(anzahlSpieler<2) {
         	//Fehlerkontrolle bei I/O
         	try {
@@ -105,7 +104,7 @@ public class Verwaltung {
 	        	tmp.Spielzug(wuerfel);
 	        	
 	        	}
-	        	//HI
+
 	        	//Spieler wird aus der Liste gelöscht, sein Status wird geändert
 		        if(tmp.getAugensumme()>abseits) {
 		        	iterator.remove();

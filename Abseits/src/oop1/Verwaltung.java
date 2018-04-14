@@ -40,6 +40,7 @@ public class Verwaltung {
         }
         
         while(anzahlSpieler<2) {
+        	//Fehlerkontrolle bei I/O
         	try {
         		System.out.println("Bitte gib die Anzahl der Spieler ein (mindestens zwei Spieler).\n");
         		anzahlSpieler = scan.nextInt();
@@ -56,10 +57,10 @@ public class Verwaltung {
             in = scan.nextLine();
             if (in.equalsIgnoreCase(":q")){
                 break;
-            } //check if name already exists
+            } //prüft, ob der Name schon in der Liste ist
             else if(checkNames(in)){
                 System.out.println("Die Namen müssen eindeutig sein.");
-            } //check if there is a digit
+            } //Prüft, ob mind. 1 Zeichen lang 
             else if(!in.isEmpty()){
                 Spieler s = new Spieler(in);
             	spieler.add(s);
@@ -69,7 +70,11 @@ public class Verwaltung {
         
         System.out.println("Abseitszahl: "+ getAbseits());
     }
-    
+    /**
+     * Methode, die prüft, ob der Name schon in der Liste ist
+     * @param s - zu prüfender Name
+     * @return - wahr, wenn Name bereits in der Liste / falsch sonst
+     */
     public boolean checkNames(String s) {
     	boolean check = false;
     	for(Spieler tmp : spieler) {
@@ -79,30 +84,37 @@ public class Verwaltung {
     	}
     	return check;
     }
-    
+    /**
+     * Mehode, die den Ablauf einer Spielrunde steuert. 
+     */
     public void spielen(){        
         createGame();
         System.out.println("Mit was für einen Würfel soll gespielt werden?");
         int number;
         number = scan.nextInt();
-        Wuerfel wuerfel = new Wuerfel(number-1);
+        Wuerfel wuerfel = new Wuerfel(number);
         
         while(spieler.size()>1) {
+        	//iteriert durch die Liste der Spieler
 			for (Iterator<Spieler> iterator = spieler.iterator(); iterator.hasNext();) {
 				Spieler tmp = iterator.next();
 	        	
+				//wenn Spieler noch spielen darf, kann er würfeln
 	        	if(tmp.getStatus()==true && spieler.size() > 1) {
 	        	System.out.println("\nAbseitszahl beträgt: " +abseits);
 	        	tmp.Spielzug(wuerfel);
 	        	
 	        	}
-  
+	        	
+	        	//Spieler wird aus der Liste gelöscht, sein Status wird geändert
 		        if(tmp.getAugensumme()>abseits) {
+		        	iterator.remove();
 		    		System.out.println("Spieler "+tmp.getName()+" ist ausgeschieden!\n"
-		    				+ "--------------------------------------------------\n"
-		    				+ "Neue Runde beginnt, es bleiben noch " + anzahlSpieler + " Spieler");
+		    				+ "--------------------------------------------------\n");
+		    		if (spieler.size()>1) {
+		    			System.out.println("Neue Runde beginnt, es bleiben noch " + spieler.size() + " Spieler");
+					}
 		    		tmp.setStatus(false);
-		    		iterator.remove();
 		    	
 		    		for(Spieler t : spieler) {
 		    			t.setAugensumme(0);
@@ -112,7 +124,7 @@ public class Verwaltung {
         }
         beenden();
     }
-    
+    // Runde wird beendet, Sieger wird ausgegeben
     public void beenden() {
         System.out.println("\nSpiel beendet: Der Gewinner ist " + spieler.get(0).getName() +" !");
     }

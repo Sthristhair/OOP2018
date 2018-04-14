@@ -46,7 +46,7 @@ public class Verwaltung {
         }
         }
         System.out.println("Bitte gib die Namen der Mitspieler ein. \n(Name{Enter} Name{Enter} usw. \":q\"{Enter} beendet die Eingabe):");
-        
+        //hzjghg
         
         
         in="";

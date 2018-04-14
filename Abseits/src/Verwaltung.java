@@ -4,12 +4,14 @@ import java.util.concurrent.ThreadLocalRandom;
 import java.util.Iterator;
 
 public class Verwaltung {
+	//Attribute
 	private int abseits;
 	ArrayList<Spieler> spieler = new ArrayList<Spieler>();
 	private String regeln;
 	private static Scanner scan = new Scanner (System.in);
 	private int anzahlSpieler = 0;
 	
+	//Konstruktor
 	public Verwaltung() {
 		
 		this.abseits = randomNum(30,50);
@@ -18,9 +20,11 @@ public class Verwaltung {
 				+ "Die gewürfelten Augenzahlen werden auf die aktuelle Augensumme des Spielers addiert.\n"
 				+ "Der Spieler der die Abseitszahl überschreitet scheidet aus und es beginnt eine neue Runde wobei die bisher erreichten Augensummen der Spieler auf 0 gesetzt werden.\n"
 				+ "Der Spieler der als letztes übrig geblieben ist hat das Spiel gewonnen.\n";
-		
-	}
+		}
 	
+	/**
+	 * Diese Methode ist für die Eingabe der Spieldaten verantwortlich bezüglich der Funktionen ob die Regeln angezeigt werden sollen, wieviele Spieler erzeugt werden sollen und wie diese heißen sollen.
+	 */
     public void createGame(){
     	String in = "-";
         while (!in.equals("y") && !in.equals("n")){
@@ -81,42 +85,41 @@ public class Verwaltung {
         Wuerfel wuerfel = new Wuerfel(number-1);
         
         while(spieler.size()>1) {
-		for (Iterator<Spieler> iterator = spieler.iterator(); iterator.hasNext();) {
-			Spieler tmp = iterator.next();
-        	
-        	if(tmp.getStatus()==true && spieler.size() > 1) {
-        	System.out.println("\nAbseitszahl beträgt:" +abseits);
-        	tmp.Spielzug(wuerfel);
-        	
-        	}
+			for (Iterator<Spieler> iterator = spieler.iterator(); iterator.hasNext();) {
+				Spieler tmp = iterator.next();
+	        	
+	        	if(tmp.getStatus()==true && spieler.size() > 1) {
+	        	System.out.println("\nAbseitszahl beträgt:" +abseits);
+	        	tmp.Spielzug(wuerfel);
+	        	
+	        	}
   
-        	
-
-            if(tmp.getAugensumme()>abseits) {
-        		System.out.println("Spieler "+tmp.getName()+" ist ausgeschieden!");
-        		tmp.setStatus(false);
-        		iterator.remove();
-        	
-        		for(Spieler t : spieler) {
-        			t.setAugensumme(0);
-        		}
-            }
-         }
+		        if(tmp.getAugensumme()>abseits) {
+		    		System.out.println("Spieler "+tmp.getName()+" ist ausgeschieden!");
+		    		tmp.setStatus(false);
+		    		iterator.remove();
+		    	
+		    		for(Spieler t : spieler) {
+		    			t.setAugensumme(0);
+		    		}
+		        }
+			}
         }
-
-      
         beenden();
     }
     
     public void beenden() {
         System.out.println("\nSpiel beendet: Der Gewinner ist " + spieler.get(0).getName() +" !");
     }
+    
     public void printRegeln(){
         System.out.println(this.regeln);  
       }
+    
     public int getAbseits() {
     	return this.abseits;
     }
+    
     public int randomNum(int min, int max){
     	int randomNum = ThreadLocalRandom.current().nextInt(min, max + 1);
     	return randomNum;

@@ -4,7 +4,7 @@ public class Main {
 	
 	public static void main(String[] args) {
 		
-		//Andre ist viel cooler als Pauzii KappaPride
+
 		Verwaltung spiel = new Verwaltung();
 		//System.out.println(spiel.getAbseits());
         while(true){

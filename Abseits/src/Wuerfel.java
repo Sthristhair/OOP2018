@@ -11,7 +11,10 @@ public class Wuerfel
 		this.augenzahl = augenzahl;
 	}
 	
-	//Methoden
+	/*
+	 * Methode, die einen Wurf des Würfels simuliert 
+	 * @return - Zufallszahl des Würfels
+	 */
 	public int wuerfeln() {
 		Random rand = new Random();
 		

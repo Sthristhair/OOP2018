@@ -23,15 +23,25 @@ public class Spieler {
 	}
 	
 	public void Spielzug(Wuerfel wuerfel) {
-		System.out.println(getName() + " ist am Zug.");
+		System.out.println(getName() + " ist am Zug. Die aktuelle Augensumme von "+ getName() + " beträgt "+ getAugensumme() + " !");
 		
 		System.out.println("Drücke {Enter} um zu wuerfeln.");
 	
         scan.nextLine();
-        int zahl = wuerfel.wuerfeln();
-        System.out.println("Es ist eine " + zahl + "!" + " Deine Augensumme beträgt nun:" + addAugenzahl(zahl));
+        int zahl = wuerfel.wuerfeln(); 
+        System.out.println("Es ist eine " + zahl + "!" +" Die Augensumme von " + getName() + " beträgt nun: " + addAugenzahl(zahl));
         
         
+	}
+	public void setAugensumme(int s) {
+		augensumme = s;
+	}
+	public boolean getStatus() {
+		return status;
+	}
+	
+	public void setStatus(boolean s) {
+		this.status = s;
 	}
 	
 	public int addAugenzahl(int zahl) {

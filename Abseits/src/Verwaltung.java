@@ -1,15 +1,12 @@
 import java.util.ArrayList;
-import java.util.Random;
 import java.util.Scanner;
 import java.util.concurrent.ThreadLocalRandom;
-import java.util.Arrays;
 import java.util.Iterator;
 
 public class Verwaltung {
 	private int abseits;
 	ArrayList<Spieler> spieler = new ArrayList<Spieler>();
 	private String regeln;
-	private int dran;
 	private static Scanner scan = new Scanner (System.in);
 	
 	public Verwaltung() {

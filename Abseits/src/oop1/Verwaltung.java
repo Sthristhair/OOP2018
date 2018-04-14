@@ -58,7 +58,7 @@ public class Verwaltung {
                 break;
             } //check if name already exists
             else if(checkNames(in)){
-                System.out.println("Die Namen muessen eindeutig sein.");
+                System.out.println("Die Namen müssen eindeutig sein.");
             } //check if there is a digit
             else if(!in.isEmpty()){
                 Spieler s = new Spieler(in);

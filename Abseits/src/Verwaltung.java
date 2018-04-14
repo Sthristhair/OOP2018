@@ -4,12 +4,14 @@ import java.util.concurrent.ThreadLocalRandom;
 import java.util.Iterator;
 
 public class Verwaltung {
+	//Attribute
 	private int abseits;
 	ArrayList<Spieler> spieler = new ArrayList<Spieler>();
 	private String regeln;
 	private static Scanner scan = new Scanner (System.in);
 	private int anzahlSpieler = 0;
 	
+	//Konstruktor
 	public Verwaltung() {
 		
 		this.abseits = randomNum(30,50);
@@ -21,6 +23,9 @@ public class Verwaltung {
 		
 	}
 	
+	/**
+	 * Diese Methode ist für die Eingabe der Spieldaten verantwortlich bezüglich der Funktionen ob die Regeln angezeigt werden sollen, wieviele Spieler erzeugt werden sollen und wie diese heißen sollen.
+	 */
     public void createGame(){
     	String in = "-";
         while (!in.equals("y") && !in.equals("n")){

@@ -8,6 +8,7 @@ public class Verwaltung {
 	ArrayList<Spieler> spieler = new ArrayList<Spieler>();
 	private String regeln;
 	private static Scanner scan = new Scanner (System.in);
+	private int anzahlSpieler = 0;
 	
 	public Verwaltung() {
 		
@@ -21,7 +22,7 @@ public class Verwaltung {
 	}
 	
     public void createGame(){
-        String in = "-";
+    	String in = "-";
         while (!in.equals("y") && !in.equals("n")){
             System.out.println("Regeln anzeigen? (y oder n)");
             in=scan.next();
@@ -30,32 +31,46 @@ public class Verwaltung {
             printRegeln();
         }
         
+        while(anzahlSpieler<2) {
+        try {
+        System.out.println("Bitte gib die Anzahl der Spieler ein (mindestens zwei Spieler).\n");
+        anzahlSpieler = scan.nextInt();
+        } catch(Exception e) {
+            scan = new Scanner (System.in);
+            System.out.println("Prüfe deine Eingabe! Die Eingabe muss eine Ganzzahl sein!");
+        }
+        }
         System.out.println("Bitte gib die Namen der Mitspieler ein. \n(Name{Enter} Name{Enter} usw. \":q\"{Enter} beendet die Eingabe):");
         
         
         
         in="";
-        while (true){
+        while (spieler.size()<anzahlSpieler){
             in = scan.nextLine();
             if (in.equalsIgnoreCase(":q")){
                 break;
             } //check if name already exists
-            /*else if(spieler.contains(scan)){
+            else if(checkNames(in)){
                 System.out.println("Die Namen muessen eindeutig sein.");
-            } *///check if there is a digit
+            } //check if there is a digit
             else if(!in.isEmpty()){
                 Spieler s = new Spieler(in);
             	spieler.add(s);
             }
         }
-        /*
-        this.spieler = new Spieler[spieler.size()];
-        for (int i=0; i<=spieler.size()-1;i++){
-            this.spieler[i] = new Spieler(spieler.get(i));
-        }
-        */
+
         
         System.out.println("Abseitszahl: "+ getAbseits());
+    }
+    
+    public boolean checkNames(String s) {
+    	boolean check = false;
+    	for(Spieler tmp : spieler) {
+    		if(tmp.getName().equals(s)) {
+    			check = true;
+    		}
+    	}
+    	return check;
     }
     
     public void spielen(){        
@@ -69,51 +84,27 @@ public class Verwaltung {
 		for (Iterator<Spieler> iterator = spieler.iterator(); iterator.hasNext();) {
 			Spieler tmp = iterator.next();
         	
-        	//System.out.println("Spieler:"+ spieler[i].getName());
         	if(tmp.getStatus()==true && spieler.size() > 1) {
         	System.out.println("\nAbseitszahl beträgt:" +abseits);
         	tmp.Spielzug(wuerfel);
         	
         	}
-        	//System.out.println(spieler.length);
+  
         	
 
             if(tmp.getAugensumme()>abseits) {
         		System.out.println("Spieler "+tmp.getName()+" ist ausgeschieden!");
         		tmp.setStatus(false);
         		iterator.remove();
-        		//System.out.println(spieler.size());
+        	
         		for(Spieler t : spieler) {
         			t.setAugensumme(0);
         		}
             }
+         }
         }
-}
 
-       /* 
-        for(int i=0; i<spieler.length; i++) {
-        	System.out.println("\nAbseitszahl beträgt:" +abseits);
-        	//System.out.println("Spieler:"+ spieler[i].getName());
-        	if(spieler[i].getStatus()==true) {
-        	spieler[i].Spielzug(wuerfel);
-        	}
-        	//System.out.println(spieler.length);
-        	
-
-            if(spieler[i].getAugensumme()>abseits) {
-        		System.out.println("Spieler "+spieler[i].getName()+" ist ausgeschieden! Es beginnt eine neue Runde.");
-        		spieler[i].setStatus(false);
-        		spieler = ArrayUtils.remove(spieler, i);
-        		for(int k=0; k<spieler.length; k++) {
-        			spieler[k].setAugensumme(0);
-        		}
-        	}
-        	if(i==spieler.length-1) {
-        		// -1 to get to index 0 (first player) increments i after each loop
-        		i=-1;
-        	}
-        }
-        */
+      
         beenden();
     }
     

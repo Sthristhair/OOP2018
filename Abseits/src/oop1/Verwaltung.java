@@ -38,7 +38,7 @@ public class Verwaltung {
         if (in.equals("y")){
             printRegeln();
         }
-        
+        //hallo
         while(anzahlSpieler<2) {
         	//Fehlerkontrolle bei I/O
         	try {

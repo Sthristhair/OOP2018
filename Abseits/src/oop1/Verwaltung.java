@@ -105,7 +105,7 @@ public class Verwaltung {
 	        	tmp.Spielzug(wuerfel);
 	        	
 	        	}
-	        	
+	        	//HI
 	        	//Spieler wird aus der Liste gelöscht, sein Status wird geändert
 		        if(tmp.getAugensumme()>abseits) {
 		        	iterator.remove();

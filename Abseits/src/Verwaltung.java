@@ -54,10 +54,10 @@ public class Verwaltung {
             in = scan.nextLine();
             if (in.equalsIgnoreCase(":q")){
                 break;
-            } //check if name already exists
+            } //checkt ob es den Spielernamen schon gibt
             else if(checkNames(in)){
                 System.out.println("Die Namen muessen eindeutig sein.");
-            } //check if there is a digit
+            } //checkt ob die Eingabe ein Zeichen beinhaltet
             else if(!in.isEmpty()){
                 Spieler s = new Spieler(in);
             	spieler.add(s);
@@ -85,10 +85,12 @@ public class Verwaltung {
         number = scan.nextInt();
         Wuerfel wuerfel = new Wuerfel(number-1);
         
+        // > 1 weil der letzte Spieler (der noch im Spiel ist) der Gewinner ist
         while(spieler.size()>1) {
+        // iteriere über die Liste der Spieler 	
 		for (Iterator<Spieler> iterator = spieler.iterator(); iterator.hasNext();) {
 			Spieler tmp = iterator.next();
-        	
+        	// wenn der Spieler noch im Spiel ist && noch mehr als ein Spieler im Spiel ist dann darf gewürfelt werden
         	if(tmp.getStatus()==true && spieler.size() > 1) {
         	System.out.println("\nAbseitszahl beträgt:" +abseits);
         	tmp.Spielzug(wuerfel);
@@ -96,12 +98,13 @@ public class Verwaltung {
         	}
   
         	
-
+        	
             if(tmp.getAugensumme()>abseits) {
         		System.out.println("Spieler "+tmp.getName()+" ist ausgeschieden!");
         		tmp.setStatus(false);
+        		//lösche Spieler aus Liste wenn er die Abseitszahl überschreitet
         		iterator.remove();
-        	
+        		// setze alle Augensummen der anderen Spieler auf Null
         		for(Spieler t : spieler) {
         			t.setAugensumme(0);
         		}
@@ -114,6 +117,7 @@ public class Verwaltung {
     }
     
     public void beenden() {
+    	// gibt den letzten / einzigen Spieler der noch in der Liste ist aus
         System.out.println("\nSpiel beendet: Der Gewinner ist " + spieler.get(0).getName() +" !");
     }
     public void printRegeln(){

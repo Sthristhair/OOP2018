@@ -38,7 +38,7 @@ public class Verwaltung {
         if (in.equals("y")){
             printRegeln();
         }
-        while(anzahlSpieler<2) {
+        while(anzahlSpieler<2 || anzahlSpieler>999) {
         	//Fehlerkontrolle bei I/O
         	try {
         		System.out.println("Bitte gib die Anzahl der Spieler ein (mindestens zwei Spieler).\n");

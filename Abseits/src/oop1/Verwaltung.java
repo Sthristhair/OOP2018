@@ -49,7 +49,7 @@ public class Verwaltung {
         		System.out.println("Prüfe deine Eingabe! Die Eingabe muss eine Ganzzahl sein!");
         	}
         }
-        System.out.println("Bitte gib die Namen der Mitspieler ein. \n(Name{Enter} Name{Enter} usw. \":q\"{Enter} beendet die Eingabe):");
+        System.out.println("Bitte gib die Namen der Mitspieler ein. \n(Name{Enter} Name{Enter} usw.):");
         
         in="";
         while (spieler.size()<anzahlSpieler){

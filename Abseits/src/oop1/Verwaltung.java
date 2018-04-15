@@ -54,11 +54,9 @@ public class Verwaltung {
         in="";
         while (spieler.size()<anzahlSpieler){
             in = scan.nextLine();
-            if (in.equalsIgnoreCase(":q")){
-                break;
-            } //prüft, ob der Name schon in der Liste ist
-            else if(checkNames(in)){
-                System.out.println("Die Namen müssen eindeutig sein.");
+             //prüft, ob der Name schon in der Liste ist
+             if(checkNames(in)){
+                System.out.println("Die Namen müssen eindeutig sein. Bitte erneut eingeben.");
             } //Prüft, ob mind. 1 Zeichen lang 
             else if(!in.isEmpty()){
                 Spieler s = new Spieler(in);

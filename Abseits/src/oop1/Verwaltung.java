@@ -125,7 +125,9 @@ public class Verwaltung {
     public void beenden() {
         System.out.println("\nSpiel beendet: Der Gewinner ist " + spieler.get(0).getName() +" !");
     }
-    
+    /**
+     * Methode zur Ausgabe der Regeln
+     */
     public void printRegeln(){
         System.out.println(this.regeln);  
       }

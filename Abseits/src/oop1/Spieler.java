@@ -18,7 +18,7 @@ public class Spieler {
 		
 	/**
 	 * Methode führt einen Spielzug durch, nachdem der Spieler ihn mit "Enter" beginnt
-	 * @param wuerfel
+	 * @param wuerfel a
 	 */
 	public void Spielzug(Wuerfel wuerfel) {
 		System.out.println(getName() + " ist am Zug. Die aktuelle Augensumme von "+ getName() + " beträgt "+ getAugensumme() + " !");
@@ -49,7 +49,11 @@ public class Spieler {
 	public void setStatus(boolean s) {
 		this.status = s;
 	}
-	
+	/**
+	 * Fügt Augenzahl der derzeitigen Augenzahl hinzu
+	 * @param zahl hinzuzufügende Augenzahl
+	 * @return neue augenzahl
+	 */
 	public int addAugenzahl(int zahl) {
 		augensumme += zahl;
 		return augensumme;

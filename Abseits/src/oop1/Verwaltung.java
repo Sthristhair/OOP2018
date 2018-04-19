@@ -86,9 +86,23 @@ public class Verwaltung {
      */
     public void spielen(){        
         createGame();
+        int number=0;
         System.out.println("Mit was für einen Würfel soll gespielt werden?");
-        int number;
-        number = scan.nextInt();
+        //Prüft, ob Eingabe valide ist
+        while(number<=0) {
+        	//Fehlerkontrolle bei I/O
+        	try {
+        		number = scan.nextInt();
+        		if(number<=0){
+            		System.out.println("Prüfe deine Eingabe! Die Eingabe muss eine Ganzzahl sein!");
+            	}
+        	} 
+        	catch(Exception e) {
+        		scan = new Scanner (System.in);
+        		System.out.println("Prüfe deine Eingabe! Die Eingabe muss eine Ganzzahl sein!");
+        	}
+        	
+        }
         Wuerfel wuerfel = new Wuerfel(number);
         
         while(spieler.size()>1) {
@@ -121,7 +135,9 @@ public class Verwaltung {
         }
         beenden();
     }
-    // Runde wird beendet, Sieger wird ausgegeben
+    /**
+     *  Runde wird beendet, Sieger wird ausgegeben
+     */
     public void beenden() {
         System.out.println("\nSpiel beendet: Der Gewinner ist " + spieler.get(0).getName() +" !");
     }

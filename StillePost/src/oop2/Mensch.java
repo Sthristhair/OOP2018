@@ -22,9 +22,9 @@ public class Mensch {
 	 * @param x
 	 * @param y
 	 */
-	public Mensch(String name, int opinion, int x, int y) {
+	public Mensch(String name, int meinung, int x, int y) {
 		this.name = name;
-		this.meinung = opinion;
+		this.meinung = meinung;
 		this.x = x;
 		this.y = y;
 	}
